@@ -6,9 +6,8 @@ import { AiOutlineLogout } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
 import { IoMdAdd } from 'react-icons/io';
 import { GoogleLogin, googleLogout  } from '@react-oauth/google';
-// import useAuthStore from '../store/authStore'; 
-// import { IUser } from '../types';
-// import useAuthStore from '../Store/authStore'; 
+import useAuthStore from '../store/authStore'; 
+import { IUser } from '../types';
 import { createOrGetUser } from '../utils';
 import Logo from '../utils/tetak-logo.png'
 

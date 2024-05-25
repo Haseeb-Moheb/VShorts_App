@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
+    "@sanity/client": "^6.18.3",
     "axios": "^1.6.8",
     "gapi-script": "^1.2.0",
     "logrocket": "^8.1.0",
