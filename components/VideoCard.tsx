@@ -6,7 +6,6 @@ import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
 import { BsPlay } from 'react-icons/bs';
-
 import { Video } from './../types';
 
 interface IProps {
