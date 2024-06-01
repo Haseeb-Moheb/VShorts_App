@@ -10,7 +10,6 @@ import { GoogleLogin, googleLogout  } from '@react-oauth/google';
 import useAuthStore from '../store/authStore';
 import { IUser } from '../types';
 import { createOrGetUser } from '../utils';
-// import Logo from '../utils/tektak-logo.png';
 import Logo from '../utils/tetak-logo.png';
 
 const Navbar = () => {
