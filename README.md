@@ -1,6 +1,6 @@
-TekTak is the best video social media platform
+VidShots is the best video social media platform
 
-TekTak Application includes Google Auth, the ability to upload, publish, share, comment on, and like the videos; filtering by categories and advanced search functionalities, profile pages, suggested accounts, custom responsive design, and much more.
+VidShots Application includes Google Auth, the ability to upload, publish, share, comment on, and like the videos; filtering by categories and advanced search functionalities, profile pages, suggested accounts, custom responsive design, and much more.
 
 Technical Skills:
 
