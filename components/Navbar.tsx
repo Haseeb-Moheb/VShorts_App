@@ -9,7 +9,7 @@ import { GoogleLogin, googleLogout  } from '@react-oauth/google';
 import useAuthStore from '../store/authStore';
 import { IUser } from '../types';
 import { createOrGetUser } from '../utils';
-import Logo from '../utils/vidshots.png'
+import Logo from '../utils/vshorts.png'
 
 const Navbar = () => {
   const [user, setUser] = useState<IUser | null>();

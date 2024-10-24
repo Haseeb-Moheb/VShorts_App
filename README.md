@@ -1,4 +1,4 @@
-VidShots is the best video social media platform
+VShorts is the best video social media platform
 
 VidShots Application includes Google Auth, the ability to upload, publish, share, comment on, and like the videos; filtering by categories and advanced search functionalities, profile pages, suggested accounts, custom responsive design, and much more.
 
