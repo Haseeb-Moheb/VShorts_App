@@ -35,3 +35,19 @@ a {
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+.dark {
+  background-color: #121212;
+  color: white;
+}
+.dark-mode-toggle {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+.dark .text-primary {
+  color: #ffffff;
+}
+.dark body {
+  background-color: #121212;
+  color: white;
+}

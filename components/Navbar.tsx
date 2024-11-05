@@ -6,14 +6,17 @@ import { AiOutlineLogout } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
 import { IoMdAdd } from 'react-icons/io';
 import { GoogleLogin, googleLogout  } from '@react-oauth/google';
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import useAuthStore from '../store/authStore';
 import { IUser } from '../types';
 import { createOrGetUser } from '../utils';
 import Logo from '../utils/vshorts.png'
+import DarkLogo from '../utils/vshortsd.png'
 
 const Navbar = () => {
   const [user, setUser] = useState<IUser | null>();
   const [searchValue, setSearchValue] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false)
   const router = useRouter();
   const { userProfile, addUser, removeUser } = useAuthStore();
   
@@ -29,13 +32,22 @@ const Navbar = () => {
     }
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+  };
+  
   return (
     <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4'>
       <Link href='/'>
         <div className='w-[120px] md:w-[160px] md:h-[30px] h-[30px]'>
           <Image
             className='cursor-pointer'
-            src={Logo}
+            src={isDarkMode ? DarkLogo : Logo}
             alt='logo'
             layout='responsive'
           />
@@ -50,7 +62,7 @@ const Navbar = () => {
           <input
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className='bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[350px] rounded-full  md:top-0'
+            className='bg-primary p-3 md:text-md text-primary dark:text-primary font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[350px] rounded-full  md:top-0'
             placeholder='Search accounts and videos'
           />
           <button
@@ -61,6 +73,14 @@ const Navbar = () => {
           </button>
         </form>
       </div>
+      <button
+            type='button'
+            className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'
+            onClick={toggleDarkMode}
+          >
+            {isDarkMode ? <MdLightMode className='text-xl' /> : <MdDarkMode className='text-xl' />}
+            <span className='hidden md:block'>Dark Mode</span>
+        </button>
       <div>
         {user ? (
           <div className='flex gap-5 md:gap-10'>
