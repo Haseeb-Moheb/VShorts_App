@@ -54,25 +54,26 @@ const Navbar = () => {
         </div>
       </Link>
 
-      <div className='relative hidden md:block'>
+        <div className='relative hidden md:block bg-gray-800 dark:bg-gray-900'>
         <form
           onSubmit={handleSearch}
-          className='absolute md:static top-10 -left-20 bg-white'
+          className='absolute md:static top-10 -left-20 bg-white dark:bg-gray-800 form-background'
         >
           <input
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className='bg-primary p-3 md:text-md text-primary dark:text-primary font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[350px] rounded-full  md:top-0'
+            className='bg-primary dark:bg-gray-500 p-3 md:text-md font-medium border-2 border-gray-100 dark:border-gray-600 focus:outline-none focus:border-2 focus:border-gray-300 dark:focus:border-gray-400 w-[300px] md:w-[350px] rounded-full dark:text-white md:top-0'
             placeholder='Search accounts and videos'
           />
           <button
             onClick={handleSearch}
-            className='absolute md:right-5 right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400'
+            className='absolute md:right-5 right-6 top-4 border-l-2 border-gray-300 dark:border-gray-600 pl-4 text-2xl text-gray-400 dark:text-gray-200'
           >
             <BiSearch />
           </button>
         </form>
       </div>
+
       <button
             type='button'
             className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'

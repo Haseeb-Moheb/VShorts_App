@@ -51,3 +51,25 @@ a {
   background-color: #121212;
   color: white;
 }
+.dark .bg-primary {
+  background-color: #121212;
+}
+.dark .border-gray-100 {
+  border-color: #333;
+}
+.dark .border-gray-300 {
+  border-color: #555;
+}
+.dark .text-gray-400 {
+  color: #bbb;
+}
+.dark .text-gray-200 {
+  color: #eee;
+}
+.dark .input-background {
+  background-color: #525456; /* Adjust to a lighter gray if needed */
+}
+
+.dark .form-background {
+  background-color: #121212; /* Adjust this as needed */
+}
