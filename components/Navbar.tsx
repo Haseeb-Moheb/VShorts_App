@@ -54,7 +54,7 @@ const Navbar = () => {
         </div>
       </Link>
 
-        <div className='relative hidden md:block bg-gray-800 dark:bg-gray-900'>
+      <div className='relative hidden md:block bg-gray-800 dark:bg-gray-900'>
         <form
           onSubmit={handleSearch}
           className='absolute md:static top-10 -left-20 bg-white dark:bg-gray-800 form-background'
@@ -62,7 +62,7 @@ const Navbar = () => {
           <input
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className='bg-primary dark:bg-gray-500 p-3 md:text-md font-medium border-2 border-gray-100 dark:border-gray-600 focus:outline-none focus:border-2 focus:border-gray-300 dark:focus:border-gray-400 w-[300px] md:w-[350px] rounded-full dark:text-white md:top-0'
+            className='bg-primary dark:bg-gray-500 p-3 md:text-md font-medium border-2 border-gray-100 dark:border-gray-600 focus:outline-none focus:border-2 focus:border-gray-300 dark:focus:border-gray-400 w-[300px] md:w-[350px] rounded-full dark:text-white input-background md:top-0'
             placeholder='Search accounts and videos'
           />
           <button
@@ -73,7 +73,7 @@ const Navbar = () => {
           </button>
         </form>
       </div>
-
+      
       <button
             type='button'
             className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'

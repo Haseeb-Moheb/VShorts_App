@@ -36,20 +36,13 @@ a {
   background-color: transparent;
 }
 
-.dark {
+/* Add this to your global CSS file if not already there */
+html.dark {
   background-color: #121212;
   color: white;
-}
-.dark-mode-toggle {
-  background-color: #1e1e1e;
-  color: #f1f1f1;
 }
 .dark .text-primary {
   color: #ffffff;
-}
-.dark body {
-  background-color: #121212;
-  color: white;
 }
 .dark .bg-primary {
   background-color: #121212;
@@ -67,9 +60,9 @@ a {
   color: #eee;
 }
 .dark .input-background {
-  background-color: #525456; /* Adjust to a lighter gray if needed */
+  background-color: #4e4e4f; /* Adjust to a lighter gray if needed */
 }
-
 .dark .form-background {
   background-color: #121212; /* Adjust this as needed */
 }
+
