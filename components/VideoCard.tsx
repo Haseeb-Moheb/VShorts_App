@@ -35,42 +35,42 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
     }
   }, [isVideoMuted]);
 
-  if(!isShowingOnHome) {
+  if (!isShowingOnHome) {
     return (
-      <div>
+      <div className='bg-white dark:bg-gray-900'>
         <Link href={`/detail/${_id}`}>
           <video
             loop
             src={video.asset.url}
-            className='w-[250px] md:w-full rounded-xl cursor-pointer'
+            className='w-[250px] md:w-full rounded-xl cursor-pointer bg-gray-100 dark:bg-gray-800'
           ></video>
         </Link>
-            <div className='flex gap-2 -mt-8 items-center ml-4'>
-              <p className='text-white text-lg font-medium flex gap-1 items-center'>
-                <BsPlay className='text-2xl' />
-                {likes?.length || 0}
-              </p>
-            </div>
+        <div className='flex gap-2 -mt-8 items-center ml-4'>
+          <p className='text-white text-lg font-medium flex gap-1 items-center'>
+            <BsPlay className='text-2xl' />
+            {likes?.length || 0}
+          </p>
+        </div>
         <Link href={`/detail/${_id}`}>
-          <p className='mt-5 text-md text-gray-800 cursor-pointer w-210'>
+          <p className='mt-5 text-md text-gray-800 dark:text-gray-300 cursor-pointer w-210'>
             {caption}
           </p>
         </Link>
       </div>
-    )
+    );
   }
 
   return (
-    <div className='flex flex-col border-b-2 border-gray-200 pb-6'>
+    <div className='flex flex-col border-b-2 border-gray-200 dark:border-gray-700 pb-6'>
       <div>
-        <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded '>
+        <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
           <div className='md:w-16 md:h-16 w-10 h-10'>
             <Link href={`/profile/${postedBy?._id}`}>
               <>
                 <Image
                   width={62}
                   height={62}
-                  className=' rounded-full'
+                  className='rounded-full'
                   src={postedBy?.image}
                   alt='user-profile'
                   layout='responsive'
@@ -81,17 +81,17 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
           <div>
             <Link href={`/profile/${postedBy?._id}`}>
               <div className='flex items-center gap-2'>
-                <p className='flex gap-2 items-center md:text-md font-bold text-primary'>
+                <p className='flex gap-2 items-center md:text-md font-bold text-primary dark:text-white'>
                   {postedBy.userName}{' '}
                   <GoVerified className='text-blue-400 text-md' />
                 </p>
-                <p className='capitalize font-medium text-xs text-gray-500 hidden md:block'>
+                <p className='capitalize font-medium text-xs text-gray-500 dark:text-gray-400 hidden md:block'>
                   {postedBy.userName}
                 </p>
               </div>
             </Link>
             <Link href={`/detail/${_id}`}>
-              <p className='mt-2 font-normal '>{caption}</p>
+              <p className='mt-2 font-normal text-gray-800 dark:text-gray-300'>{caption}</p>
             </Link>
           </div>
         </div>
@@ -108,7 +108,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               loop
               ref={videoRef}
               src={video?.asset?.url}
-              className='lg:w-[600px] h-[300px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-gray-100'
+              className='lg:w-[600px] h-[300px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-gray-100 dark:bg-gray-800'
             ></video>
           </Link>
 
@@ -116,20 +116,20 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
             <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] lg:w-[600px] p-3'>
               {playing ? (
                 <button onClick={onVideoPress}>
-                  <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
+                  <BsFillPauseFill className='text-black dark:text-white text-2xl lg:text-4xl' />
                 </button>
               ) : (
                 <button onClick={onVideoPress}>
-                  <BsFillPlayFill className='text-black text-2xl lg:text-4xl' />
+                  <BsFillPlayFill className='text-black dark:text-white text-2xl lg:text-4xl' />
                 </button>
               )}
               {isVideoMuted ? (
                 <button onClick={() => setIsVideoMuted(false)}>
-                  <HiVolumeOff className='text-black text-2xl lg:text-4xl' />
+                  <HiVolumeOff className='text-black dark:text-white text-2xl lg:text-4xl' />
                 </button>
               ) : (
                 <button onClick={() => setIsVideoMuted(true)}>
-                  <HiVolumeUp className='text-black text-2xl lg:text-4xl' />
+                  <HiVolumeUp className='text-black dark:text-white text-2xl lg:text-4xl' />
                 </button>
               )}
             </div>
