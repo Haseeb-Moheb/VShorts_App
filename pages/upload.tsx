@@ -72,7 +72,7 @@ const Upload = () => {
       };
 
       await axios.post(`${BASE_URL}/api/post`, doc);
-        
+
       router.push('/');
     }
   };
@@ -85,14 +85,14 @@ const Upload = () => {
   };
 
   return (
-    <div className='flex w-full h-full absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
-      <div className=' bg-white rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-center items-center p-14 pt-6'>
+    <div className='flex w-full h-full absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] dark:bg-gray-900 justify-center'>
+      <div className='bg-white dark:bg-gray-800 rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-center items-center p-14 pt-6'>
         <div>
           <div>
-            <p className='text-2xl font-bold'>Upload Video</p>
-            <p className='text-md text-gray-400 mt-1'>Post a video to your account</p>
+            <p className='text-2xl font-bold dark:text-white'>Upload Video</p>
+            <p className='text-md text-gray-400 dark:text-gray-300 mt-1'>Post a video to your account</p>
           </div>
-          <div className=' border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center  outline-none mt-10 w-[260px] h-[458px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100'>
+          <div className='border-dashed rounded-xl border-4 border-gray-200 dark:border-gray-700 flex flex-col justify-center items-center outline-none mt-10 w-[260px] h-[458px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100 dark:hover:bg-gray-700'>
             {loading ? (
               <p className='text-center text-3xl text-red-400 font-semibold'>
                 Uploading...
@@ -104,14 +104,14 @@ const Upload = () => {
                     <div className='flex flex-col items-center justify-center h-full'>
                       <div className='flex flex-col justify-center items-center'>
                         <p className='font-bold text-xl'>
-                          <FaCloudUploadAlt className='text-gray-300 text-6xl' />
+                          <FaCloudUploadAlt className='text-gray-300 text-6xl dark:text-gray-500' />
                         </p>
-                        <p className='text-xl font-semibold'>
+                        <p className='text-xl font-semibold dark:text-white'>
                           Select video to upload
                         </p>
                       </div>
 
-                      <p className='text-gray-400 text-center mt-10 text-sm leading-10'>
+                      <p className='text-gray-400 dark:text-gray-300 text-center mt-10 text-sm leading-10'>
                         MP4 or WebM or ogg <br />
                         720x1280 resolution or higher <br />
                         Up to 10 minutes <br />
@@ -129,18 +129,18 @@ const Upload = () => {
                     />
                   </label>
                 ) : (
-                  <div className=' rounded-3xl w-[300px]  p-4 flex flex-col gap-6 justify-center items-center'>
+                  <div className='rounded-3xl w-[300px] p-4 flex flex-col gap-6 justify-center items-center'>
                     <video
                       className='rounded-xl h-[462px] mt-16 bg-black'
                       controls
                       loop
                       src={videoAsset?.url}
                     />
-                    <div className=' flex justify-between gap-20'>
-                      <p className='text-lg'>{videoAsset.originalFilename}</p>
+                    <div className='flex justify-between gap-20'>
+                      <p className='text-lg dark:text-white'>{videoAsset.originalFilename}</p>
                       <button
                         type='button'
-                        className=' rounded-full bg-gray-200 text-red-400 p-2 text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
+                        className='rounded-full bg-gray-200 dark:bg-gray-700 text-red-400 p-2 text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
                         onClick={() => setVideoAsset(undefined)}
                       >
                         <MdDelete />
@@ -153,30 +153,30 @@ const Upload = () => {
           </div>
           {wrongFileType && (
             <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[260px]'>
-              Please select an video file (mp4 or webm or ogg)
+              Please select a video file (mp4 or webm or ogg)
             </p>
           )}
         </div>
         <div className='flex flex-col gap-3 pb-10'>
-          <label className='text-md font-medium '>Caption</label>
+          <label className='text-md font-medium dark:text-white'>Caption</label>
           <input
             type='text'
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
-            className='rounded lg:after:w-650 outline-none text-md border-2 border-gray-200 p-2'
+            className='rounded lg:w-650 outline-none text-md border-2 border-gray-200 dark:border-gray-700 p-2 bg-white dark:bg-gray-800 dark:text-white'
           />
-          <label className='text-md font-medium '>Choose a topic</label>
+          <label className='text-md font-medium dark:text-white'>Choose a topic</label>
 
           <select
             onChange={(e) => {
               setTopic(e.target.value);
             }}
-            className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
+            className='outline-none lg:w-650 border-2 border-gray-200 dark:border-gray-700 text-md capitalize lg:p-4 p-2 rounded cursor-pointer bg-white dark:bg-gray-800 dark:text-white'
           >
             {topics.map((item) => (
               <option
                 key={item.name}
-                className=' outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300'
+                className='outline-none capitalize bg-white dark:bg-gray-800 text-gray-700 dark:text-white text-md p-2 hover:bg-slate-300 dark:hover:bg-gray-700'
                 value={item.name}
               >
                 {item.name}
@@ -187,7 +187,7 @@ const Upload = () => {
             <button
               onClick={handleDiscard}
               type='button'
-              className='border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
+              className='border-gray-300 dark:border-gray-700 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none bg-white dark:bg-gray-800 dark:text-white'
             >
               Discard
             </button>

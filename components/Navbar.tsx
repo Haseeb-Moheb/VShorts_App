@@ -73,25 +73,26 @@ const Navbar = () => {
           </button>
         </form>
       </div>
-      
-      <button
-        type='button'
-        className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'
-        onClick={toggleDarkMode}
-      >
-        {isDarkMode ? <MdLightMode className='text-xl' /> : <MdDarkMode className='text-xl' />}
-        <span className='hidden md:block'>Dark Mode</span>
-      </button>
 
-      <div>
+      <div className='flex gap-5 md:gap-10 items-center'>
         {user ? (
-          <div className='flex gap-5 md:gap-10 items-center'>
+          <>
             <Link href='/upload'>
               <button className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'>
                 <IoMdAdd className='text-xl' />{' '}
-                <span className='hidden md:block'>Upload </span>
+                <span className='hidden md:block'>Upload</span>
               </button>
             </Link>
+            <button
+              type='button'
+              className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'
+              onClick={toggleDarkMode}
+            >
+              {isDarkMode ? <MdLightMode className='text-xl' /> : <MdDarkMode className='text-xl' />}
+              <span className='hidden md:block'>
+                {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              </span>
+            </button>
             {user.image && (
               <Link href={`/profile/${user._id}`}>
                 <div>
@@ -115,7 +116,7 @@ const Navbar = () => {
             >
               <AiOutlineLogout color='red' fontSize={21} />
             </button>
-          </div>
+          </>
         ) : (
           <GoogleLogin
             onSuccess={(response) => createOrGetUser(response, addUser)}
