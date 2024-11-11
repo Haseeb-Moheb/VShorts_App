@@ -18,11 +18,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={`${process.env.NEXT_PUBLIC_BASE_URL}/favi.png`} />
+        <meta name="theme-color" content="#000000" />
+        <meta name="description" content="VShorts - Making Moments Unforgettable" />
+        <title>VShorts</title>
       </Head>
       <div className='xl:w-[1500px] m-auto overflow-hidden h-[100vh]'>
         <Navbar />
-        <div className='flex gap-6 md:gap-20 '>
+        <div className='flex gap-6 md:gap-20'>
           <div className='h-[92vh] overflow-hidden xl:hover:overflow-auto'>
             <Sidebar />
           </div>
