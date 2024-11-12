@@ -162,8 +162,8 @@ const Detail = ({ postDetails }: IProps) => {
   );
 };
 
-export const getServerSideProps = async ({ params: { id } }) => {
-  const res = await axios.get(`${BASE_URL}/api/post/${id}`);
+export const getServerSideProps = async ({ params: { id } }: any) => {
+  const res = await axios.get(`${BASE_URL}/api/post/${ id }`);
 
   return {
     props: { postDetails: res.data },

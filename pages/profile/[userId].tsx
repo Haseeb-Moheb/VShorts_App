@@ -80,7 +80,7 @@ const Profile = ({ data }: IProps) => {
   );
 };
 
-export const getServerSideProps = async ({ params: { userId } }) => {
+export const getServerSideProps = async ({ params: { userId } }: any) => {
   const res = await axios.get(`${BASE_URL}/api/profile/${userId}`);
 
   return {
