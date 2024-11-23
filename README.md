@@ -1,4 +1,4 @@
-<h1 VShorts is the best video social media platform </h1>
+VShorts is the best video social media platform
 
 VShorts is THE destination for mobile videos. On VShorts, short-form videos are exciting, spontaneous, and genuine. Whether you're a sports fanatic, a pet enthusiast, or just looking for a laugh, there's something for everyone on VShorts. All you have to do is watch, engage with what you like, skip what you don't, and you'll find an endless stream of short videos that feel personalized just for you. From your morning coffee to your afternoon errands, VShorts has the videos that are guaranteed to make your day.
 
