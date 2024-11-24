@@ -35,31 +35,6 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
     }
   }, [isVideoMuted]);
 
-  if (!isShowingOnHome) {
-    return (
-      <div className='bg-white dark:bg-gray-900'>
-        <Link href={`/detail/${_id}`}>
-          <video
-            loop
-            src={video.asset.url}
-            className='w-[250px] md:w-[600px] rounded-xl cursor-pointer bg-gray-100 dark:bg-gray-800'
-          ></video>
-        </Link>
-        <div className='flex gap-2 -mt-8 items-center ml-4'>
-          <p className='text-white text-lg font-medium flex gap-1 items-center'>
-            <BsPlay className='text-2xl' />
-            {likes?.length || 0}
-          </p>
-        </div>
-        <Link href={`/detail/${_id}`}>
-          <p className='mt-5 text-md text-gray-800 dark:text-gray-300 cursor-pointer w-210'>
-            {caption}
-          </p>
-        </Link>
-      </div>
-    );
-  }
-
   return (
     <div className='flex flex-col border-b-2 border-gray-200 dark:border-gray-700 pb-6'>
       <div>
@@ -101,19 +76,20 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
         <div
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
-          className='rounded-3xl'
+          className='rounded-3xl overflow-hidden relative' // Added relative position to this div
         >
           <Link href={`/detail/${_id}`}>
             <video
               loop
               ref={videoRef}
               src={video?.asset?.url}
-              className='w-full max-w-[600px] max-h-[400px] object-cover rounded-2xl cursor-pointer bg-gray-100 dark:bg-gray-800'
+              className='w-full h-[400px] md:h-[600px] object-cover rounded-2xl cursor-pointer bg-gray-100 dark:bg-gray-800'
+              style={{ aspectRatio: '9/16' }}
             ></video>
           </Link>
 
           {isHover && (
-            <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] lg:w-[600px] p-3'>
+            <div className='absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-4 justify-center w-full p-3'>
               {playing ? (
                 <button onClick={onVideoPress}>
                   <BsFillPauseFill className='text-black dark:text-white text-2xl lg:text-4xl' />
