@@ -76,7 +76,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
         <div
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
-          className='rounded-3xl overflow-hidden relative' // Added relative position to this div
+          className='rounded-3xl overflow-hidden relative'
         >
           <Link href={`/detail/${_id}`}>
             <video
@@ -91,21 +91,21 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
           {isHover && (
             <div className='absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-4 justify-center w-full p-3'>
               {playing ? (
-                <button onClick={onVideoPress}>
-                  <BsFillPauseFill className='text-black dark:text-white text-2xl lg:text-4xl' />
+                <button onClick={onVideoPress} className='icon'>
+                  <BsFillPauseFill className='text-2xl lg:text-4xl' />
                 </button>
               ) : (
-                <button onClick={onVideoPress}>
-                  <BsFillPlayFill className='text-black dark:text-white text-2xl lg:text-4xl' />
+                <button onClick={onVideoPress} className='icon'>
+                  <BsFillPlayFill className='text-2xl lg:text-4xl' />
                 </button>
               )}
               {isVideoMuted ? (
-                <button onClick={() => setIsVideoMuted(false)}>
-                  <HiVolumeOff className='text-black dark:text-white text-2xl lg:text-4xl' />
+                <button onClick={() => setIsVideoMuted(false)} className='icon'>
+                  <HiVolumeOff className='text-2xl lg:text-4xl' />
                 </button>
               ) : (
-                <button onClick={() => setIsVideoMuted(true)}>
-                  <HiVolumeUp className='text-black dark:text-white text-2xl lg:text-4xl' />
+                <button onClick={() => setIsVideoMuted(true)} className='icon'>
+                  <HiVolumeUp className='text-2xl lg:text-4xl' />
                 </button>
               )}
             </div>

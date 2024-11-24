@@ -93,3 +93,11 @@ a {
 .dark .bg-gray-800 {
   background-color: #1f2937;
 }
+/* Ensuring icons are visible in both light and dark modes */
+.icon {
+  color: black; /* Default color for light mode */
+}
+
+.dark .icon {
+  color: white; /* Color for dark mode */
+}
