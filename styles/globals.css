@@ -101,3 +101,7 @@ a {
 .dark .icon {
   color: white; /* Color for dark mode */
 }
+
+.video { 
+  aspect-ratio: 9/16;
+}

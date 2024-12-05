@@ -84,7 +84,6 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               ref={videoRef}
               src={video?.asset?.url}
               className='w-full h-[400px] md:h-[600px] object-cover rounded-2xl cursor-pointer bg-gray-100 dark:bg-gray-800'
-              style={{ aspectRatio: '9/16' }}
               preload="auto"
               playsInline
             ></video>
