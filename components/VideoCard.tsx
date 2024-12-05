@@ -83,7 +83,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               loop
               ref={videoRef}
               src={video?.asset?.url}
-              className='w-full h-[400px] md:h-[600px] object-cover rounded-2xl cursor-pointer bg-gray-100 dark:bg-gray-800'
+              className='w-full h-[400px] md:h-[600px] object-cover rounded-2xl cursor-pointer bg-gray-100 dark:bg-gray-800 video'
               preload="auto"
               playsInline
             ></video>

@@ -103,5 +103,7 @@ a {
 }
 
 .video { 
-  aspect-ratio: 9 / 16;
+  width: 100%; height: auto; /* Maintain aspect ratio */ 
+  aspect-ratio: 9 / 16; 
+  max-height: 600px; /* Set a max height to avoid stretching */
 }
