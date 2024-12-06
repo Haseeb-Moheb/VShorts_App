@@ -17,6 +17,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   const [playing, setPlaying] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const onVideoPress = () => {
@@ -27,6 +28,10 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
       videoRef?.current?.play();
       setPlaying(true);
     }
+  };
+
+  const handleLoadedData = () => {
+    setVideoLoaded(true);
   };
 
   useEffect(() => {
@@ -79,14 +84,26 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
           className='rounded-3xl overflow-hidden relative'
         >
           <Link href={`/detail/${_id}`}>
-            <video
-              loop
-              ref={videoRef}
-              src={video?.asset?.url}
-              className='w-full h-[400px] md:h-[600px] object-cover rounded-2xl cursor-pointer bg-gray-100 dark:bg-gray-800 video'
-              preload="auto"
-              playsInline
-            ></video>
+            <div className='relative'>
+              {!videoLoaded && (
+                <Image
+                  src='/path-to-thumbnail.jpg'
+                  alt='Video thumbnail'
+                  layout='fill'
+                  objectFit='cover'
+                  className='absolute inset-0 w-full h-full'
+                />
+              )}
+              <video
+                loop
+                ref={videoRef}
+                src={video?.asset?.url}
+                className={`w-full h-[400px] md:h-[600px] object-cover rounded-2xl cursor-pointer bg-gray-100 dark:bg-gray-800 video ${videoLoaded ? '' : 'hidden'}`}
+                preload="auto"
+                playsInline
+                onLoadedData={handleLoadedData}
+              ></video>
+            </div>
           </Link>
 
           {isHover && (
