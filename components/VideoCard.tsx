@@ -87,6 +87,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               preload="auto"
               playsInline
               muted
+              poster="/path-to-poster-image.jpg" // Add this line
             ></video>
           </Link>
 
