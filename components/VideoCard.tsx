@@ -37,8 +37,15 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   useEffect(() => {
     if (videoRef?.current) {
       videoRef.current.muted = isVideoMuted;
+      videoRef.current.load(); // Force loading the video
     }
   }, [isVideoMuted]);
+
+  useEffect(() => {
+    if (videoRef?.current) {
+      videoRef.current.load(); // Force loading the video on mount
+    }
+  }, []);
 
   return (
     <div className='flex flex-col border-b-2 border-gray-200 dark:border-gray-700 pb-6'>
@@ -92,6 +99,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               preload="auto"
               playsInline
               muted
+              onLoadedData={handleLoadedData}
             ></video>
           </Link>
 
