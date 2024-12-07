@@ -17,6 +17,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   const [playing, setPlaying] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const onVideoPress = () => {
@@ -27,6 +28,10 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
       videoRef?.current?.play();
       setPlaying(true);
     }
+  };
+
+  const handleLoadedData = () => {
+    setVideoLoaded(true);
   };
 
   useEffect(() => {
@@ -87,7 +92,6 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               preload="auto"
               playsInline
               muted
-              poster="/path-to-poster-image.jpg" // Add this line
             ></video>
           </Link>
 
