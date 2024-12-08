@@ -106,20 +106,20 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
           {isHover && (
             <div className='absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-4 justify-center w-full p-3'>
               {playing ? (
-                <button onClick={onVideoPress} className='icon'>
+                <button type="button" onClick={onVideoPress} className='icon' aria-label="Pause video">
                   <BsFillPauseFill className='text-2xl lg:text-4xl' />
                 </button>
               ) : (
-                <button onClick={onVideoPress} className='icon'>
+                <button type="button" onClick={onVideoPress} className='icon' aria-label="Play video">
                   <BsFillPlayFill className='text-2xl lg:text-4xl' />
                 </button>
               )}
               {isVideoMuted ? (
-                <button onClick={() => setIsVideoMuted(false)} className='icon'>
+                <button type="button" onClick={() => setIsVideoMuted(false)} className='icon' aria-label="Unmute video">
                   <HiVolumeOff className='text-2xl lg:text-4xl' />
                 </button>
               ) : (
-                <button onClick={() => setIsVideoMuted(true)} className='icon'>
+                <button type="button" onClick={() => setIsVideoMuted(true)} className='icon' aria-label="Mute video">
                   <HiVolumeUp className='text-2xl lg:text-4xl' />
                 </button>
               )}
