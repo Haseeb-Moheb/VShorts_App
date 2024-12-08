@@ -5,8 +5,9 @@ import axios from 'axios';
 import VideoCard from '../../components/VideoCard';
 import NoResults from '../../components/NoResults';
 import FollowButton from '../../components/FollowButton'; // Import FollowButton
+import useAuthStore from '../../store/authStore'; // Import your auth store
 import { IUser, Video } from '../../types';
-import { BASE_URL } from '../../utils';
+import { BASE_URL } from '@/utils';
 
 interface IProps {
   data: {
@@ -19,9 +20,9 @@ interface IProps {
 const Profile = ({ data }: IProps) => {
   const [showUserVideos, setShowUserVideos] = useState<Boolean>(true);
   const [videosList, setVideosList] = useState<Video[]>([]);
-  const currentUserId = 'current-user-id'; // Replace with logic to get the current user ID
-
   const { user, userVideos, userLikedVideos } = data;
+  const { userProfile }: any = useAuthStore(); // Get the current user profile
+
   const videos = showUserVideos ? 'border-b-2 border-black dark:border-white' : 'text-gray-400 dark:text-gray-500';
   const liked = !showUserVideos ? 'border-b-2 border-black dark:border-white' : 'text-gray-400 dark:text-gray-500';
 
@@ -51,14 +52,14 @@ const Profile = ({ data }: IProps) => {
           />
         </div>
 
-        <div>
+        <div className='flex flex-col'>
           <div className='text-md md:text-2xl font-bold tracking-wider flex gap-2 items-center lowercase'>
             <span>{user.userName.replace(/\s+/g, '')}</span>
             <GoVerified className='text-blue-400 md:text-xl text-md' />
           </div>
           <p className='text-sm font-medium text-gray-700 dark:text-gray-300'>{user.userName}</p>
+          <FollowButton userId={user._id} currentUserId={userProfile?._id} /> {/* Place FollowButton here */}
         </div>
-        <FollowButton userId={user._id} currentUserId={currentUserId} /> {/* Add FollowButton here */}
       </div>
       <div>
         <div className='flex gap-10 mb-10 mt-10 border-b-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4'>

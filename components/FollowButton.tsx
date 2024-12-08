@@ -5,9 +5,10 @@ import useAuthStore from '@/store/authStore'; // Import your auth store
 
 interface FollowButtonProps {
   userId: string;
+  currentUserId: string;
 }
 
-const FollowButton: React.FC<FollowButtonProps> = ({ userId }) => {
+const FollowButton: React.FC<FollowButtonProps> = ({ userId, currentUserId }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const { userProfile }: any = useAuthStore(); // Get the current user profile
 
@@ -51,8 +52,14 @@ const FollowButton: React.FC<FollowButtonProps> = ({ userId }) => {
   if (!userProfile) return null; // Return null if userProfile is not available
 
   return (
-    <button onClick={isFollowing ? handleUnfollow : handleFollow}>
-      {isFollowing ? 'Unfollow' : 'Follow'}
+    <button
+      onClick={isFollowing ? handleUnfollow : handleFollow}
+      className={`px-2 py-2 mt-2 text-sm font-semibold rounded-md ${
+        isFollowing ? 'bg-gray-500 text-white' : 'bg-red-500 text-white'
+      }`}
+      style={{ width: '80px', height: '40px' }} // Adjusted width and height
+    >
+      {isFollowing ? 'Following' : 'Follow'}
     </button>
   );
 };
