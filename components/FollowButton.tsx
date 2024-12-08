@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '@/utils';
 import useAuthStore from '@/store/authStore'; // Import your auth store
+import { BsPersonFill } from 'react-icons/bs'; // Import the person icon
 
 interface FollowButtonProps {
   userId: string;
@@ -54,12 +55,19 @@ const FollowButton: React.FC<FollowButtonProps> = ({ userId, currentUserId }) =>
   return (
     <button
       onClick={isFollowing ? handleUnfollow : handleFollow}
-      className={`px-2 py-2 mt-2 text-sm font-semibold rounded-md ${
+      className={`flex items-center justify-center px-3 py-2 mt-2 text-sm font-semibold rounded-md ${
         isFollowing ? 'bg-gray-500 text-white' : 'bg-red-500 text-white'
       }`}
-      style={{ width: '80px', height: '40px' }} // Adjusted width and height
+      style={{ width: '110px', height: '40px' }} // Adjusted width and height
     >
-      {isFollowing ? 'Following' : 'Follow'}
+      {isFollowing ? (
+        <span className="flex items-center gap-1">
+          <BsPersonFill className="text-lg" />
+          <span className="text-base">Following</span> {/* Adjusted font size */}
+        </span>
+      ) : (
+        <span className="text-base">Follow</span> // Ensured consistent font size
+      )}
     </button>
   );
 };
