@@ -38,6 +38,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
       res.status(200).json({ message: 'Followed successfully' });
     } catch (error) {
+      
       res.status(500).json({ message: 'Error following user' });
     }
   } else if (req.method === 'DELETE') {
