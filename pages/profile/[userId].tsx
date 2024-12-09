@@ -4,10 +4,13 @@ import { GoVerified } from 'react-icons/go';
 import axios from 'axios';
 import VideoCard from '../../components/VideoCard';
 import NoResults from '../../components/NoResults';
-import FollowButton from '../../components/FollowButton'; // Import FollowButton
-import useAuthStore from '../../store/authStore'; // Import your auth store
+import FollowButton from '../../components/FollowButton';
+import MessageField from '@/components/MessageField'; // Import MessageField component
+import useAuthStore from '../../store/authStore';
 import { IUser, Video } from '../../types';
 import { BASE_URL } from '@/utils';
+// import styles from '../../styles/globals.css';
+import { client } from '@/utils/client'; // Import the Sanity client
 
 interface IProps {
   data: {
@@ -20,8 +23,9 @@ interface IProps {
 const Profile = ({ data }: IProps) => {
   const [showUserVideos, setShowUserVideos] = useState<Boolean>(true);
   const [videosList, setVideosList] = useState<Video[]>([]);
+  const [showMessageField, setShowMessageField] = useState<Boolean>(false);
   const { user, userVideos, userLikedVideos } = data;
-  const { userProfile }: any = useAuthStore(); // Get the current user profile
+  const { userProfile }: any = useAuthStore();
 
   const videos = showUserVideos ? 'border-b-2 border-black dark:border-white' : 'text-gray-400 dark:text-gray-500';
   const liked = !showUserVideos ? 'border-b-2 border-black dark:border-white' : 'text-gray-400 dark:text-gray-500';
@@ -37,6 +41,18 @@ const Profile = ({ data }: IProps) => {
 
     fetchVideos();
   }, [showUserVideos, userLikedVideos, userVideos]);
+
+  const openMessageField = () => {
+    setShowMessageField(true);
+  };
+
+  const closeMessageField = () => {
+    setShowMessageField(false);
+  };
+
+  const promotePost = () => {
+    alert('Promote post');
+  };
 
   return (
     <div className='w-full bg-white dark:bg-gray-900 text-primary dark:text-white'>
@@ -58,7 +74,23 @@ const Profile = ({ data }: IProps) => {
             <GoVerified className='text-blue-400 md:text-xl text-md' />
           </div>
           <p className='text-sm font-medium text-gray-700 dark:text-gray-300'>{user.userName}</p>
-          <FollowButton userId={user._id} currentUserId={userProfile?._id} /> {/* Place FollowButton here */}
+          {userProfile?._id === user._id ? (
+            <div className='flex gap-2 mt-2 items-center'>
+              <button type="button" className={`button-common button-edit-profile`}>
+                Edit Profile
+              </button>
+              <button type="button" onClick={promotePost} className={`button-common button-promote`}>
+                Promote Post
+              </button>
+            </div>
+          ) : (
+            <div className='flex gap-2 mt-2 items-center'>
+              <FollowButton userId={user._id} currentUserId={userProfile?._id} />
+              <button type="button" onClick={openMessageField} className={`button-common button-message`}>
+                Message
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <div>
@@ -80,6 +112,7 @@ const Profile = ({ data }: IProps) => {
           )}
         </div>
       </div>
+      {showMessageField && <MessageField recipientId={user._id} onClose={closeMessageField} />} {/* Show MessageField component when openMessageField is triggered */}
     </div>
   );
 };
