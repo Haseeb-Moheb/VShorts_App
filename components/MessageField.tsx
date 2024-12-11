@@ -56,7 +56,7 @@ const MessageField: React.FC<MessageFieldProps> = ({ recipientId, onClose }) => 
     <div className='fixed bottom-8 right-8 w-96 h-112 bg-white dark:bg-gray-900 p-4 shadow-lg rounded-lg'>
       <div className='flex justify-between items-center mb-4'>
         <h2 className='text-lg font-semibold'>Messages</h2>
-        <button onClick={onClose}>
+        <button onClick={onClose} title='close' type='button'> 
           <AiOutlineClose className='text-xl' />
         </button>
       </div>

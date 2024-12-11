@@ -68,6 +68,8 @@ const Navbar = () => {
           <button
             onClick={handleSearch}
             className='absolute md:right-5 right-6 top-4 border-l-2 border-gray-300 dark:border-gray-600 pl-4 text-2xl text-gray-400 dark:text-gray-200'
+            title='search'
+            type='submit'
           >
             <BiSearch />
           </button>
@@ -113,6 +115,7 @@ const Navbar = () => {
                 googleLogout();
                 removeUser();
               }}
+              title='logout'
             >
               <AiOutlineLogout color='red' fontSize={21} />
             </button>
