@@ -139,12 +139,13 @@ const Upload = () => {
                     <div className='flex justify-between gap-20'>
                       <p className='text-lg dark:text-white'>{videoAsset.originalFilename}</p>
                       <button
-                        type='button'
-                        className='rounded-full bg-gray-200 dark:bg-gray-700 text-red-400 p-2 text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
-                        onClick={() => setVideoAsset(undefined)}
-                      >
-                        <MdDelete />
-                      </button>
+                          type='button'
+                          className='rounded-full bg-gray-200 dark:bg-gray-700 text-red-400 p-2 text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
+                          onClick={() => setVideoAsset(undefined)}
+                          title='Delete'
+                        >
+                          <MdDelete />
+                        </button>
                     </div>
                   </div>
                 )}
@@ -160,29 +161,32 @@ const Upload = () => {
         <div className='flex flex-col gap-3 pb-10'>
           <label className='text-md font-medium dark:text-white'>Caption</label>
           <input
-            type='text'
-            value={caption}
-            onChange={(e) => setCaption(e.target.value)}
-            className='rounded lg:w-650 outline-none text-md border-2 border-gray-200 dark:border-gray-700 p-2 bg-white dark:bg-gray-800 dark:text-white'
-          />
+                type='text'
+                value={caption}
+                onChange={(e) => setCaption(e.target.value)}
+                className='rounded lg:w-650 outline-none text-md border-2 border-gray-200 dark:border-gray-700 p-2 bg-white dark:bg-gray-800 dark:text-white'
+                title='Enter caption'
+                placeholder='Enter your caption here...'
+              />
           <label className='text-md font-medium dark:text-white'>Choose a topic</label>
 
           <select
-            onChange={(e) => {
-              setTopic(e.target.value);
-            }}
-            className='outline-none lg:w-650 border-2 border-gray-200 dark:border-gray-700 text-md capitalize lg:p-4 p-2 rounded cursor-pointer bg-white dark:bg-gray-800 dark:text-white'
-          >
-            {topics.map((item) => (
-              <option
-                key={item.name}
-                className='outline-none capitalize bg-white dark:bg-gray-800 text-gray-700 dark:text-white text-md p-2 hover:bg-slate-300 dark:hover:bg-gray-700'
-                value={item.name}
+                onChange={(e) => {
+                  setTopic(e.target.value);
+                }}
+                className='outline-none lg:w-650 border-2 border-gray-200 dark:border-gray-700 text-md capitalize lg:p-4 p-2 rounded cursor-pointer bg-white dark:bg-gray-800 dark:text-white'
+                title='Select a topic'
               >
-                {item.name}
-              </option>
-            ))}
-          </select>
+                {topics.map((item) => (
+                  <option
+                    key={item.name}
+                    className='outline-none capitalize bg-white dark:bg-gray-800 text-gray-700 dark:text-white text-md p-2 hover:bg-slate-300 dark:hover:bg-gray-700'
+                    value={item.name}
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              </select>
           <div className='flex gap-6 mt-10'>
             <button
               onClick={handleDiscard}
