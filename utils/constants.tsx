@@ -37,6 +37,6 @@ export const topics = [
   },
 ];
 
-export const footerList1 = ['About', 'Newsroom', 'Store', 'Contact', 'Carrers', 'ByteDance', 'Creator Directory']
+export const footerList1 = ['About', 'Newsroom', 'Store', 'Contact', 'Carrers', 'HM', 'Creator Directory']
 export const footerList2 = [ 'VShorts for Good','Advertise','Developers','Transparency','VShorts Rewards' ]
 export const footerList3 = [ 'Help', 'Safety', 'Terms', 'Privacy', 'Creator Portal', 'Community Guidelines' ]
