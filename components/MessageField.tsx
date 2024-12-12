@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { client } from '@/utils/client'; // Import Sanity client
 import useAuthStore from '@/store/authStore';
 import { AiOutlineClose } from 'react-icons/ai'; // Import close icon
+import { BASE_URL } from '@/utils'; 
 
 interface MessageFieldProps {
   recipientId: string;
