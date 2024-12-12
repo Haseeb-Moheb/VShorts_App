@@ -67,6 +67,7 @@ const FollowButton: React.FC<FollowButtonProps> = ({ userId, currentUserId }) =>
       }`}
       style={{ width: '110px', height: '45px' }} // Adjusted width and height
       disabled={isRequested} // Disable button if request is pending
+      type='button'
     >
       {isFollowing ? (
         <span className="flex items-center gap-1">
