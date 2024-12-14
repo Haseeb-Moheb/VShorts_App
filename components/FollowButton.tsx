@@ -62,10 +62,10 @@ const FollowButton: React.FC<FollowButtonProps> = ({ userId, currentUserId }) =>
   return (
     <button
       onClick={isFollowing ? handleUnfollow : handleFollow}
-      className={`flex items-center justify-center px-3 py-2 mt-2 text-sm font-semibold rounded-md ${
+      className={`flex items-center justify-center px-3 py-2 mt-2 text-base font-semibold rounded-md ${
         isFollowing ? 'bg-gray-500 text-white' : isRequested ? 'bg-yellow-500 text-white' : 'bg-red-500 text-white'
       }`}
-      style={{ width: '110px', height: '45px' }} // Adjusted width and height
+      style={{ width: '110px', height: '40px' }} // Adjusted width and height
       disabled={isRequested} // Disable button if request is pending
       type='button'
     >
