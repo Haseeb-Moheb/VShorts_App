@@ -111,7 +111,7 @@ a {
 /* Add these styles to your global CSS file */
 
 .button-common {
-  width: 110px;
+  width: 125px;
   height: 45px;
   display: flex;
   align-items: center;
@@ -124,12 +124,17 @@ a {
 }
 
 .button-edit-profile {
-  background-color: #f53174; /* bg-blue-500 equivalent */
+  background-color: #ef4444; /* bg-blue-500 equivalent */
+  color: white;
+}
+
+.button-promote { 
+  background-color: #10b932; /* bg-green-500 equivalent */ 
   color: white;
 }
 
 .button-message {
-  width: 135px; /* Increased width to fit "Promote Post" text */
-  background-color: #10b981; /* bg-green-500 equivalent */
+  width: 120px; /* Increased width to fit "Promote Post" text */
+  background-color: #10b932; /* bg-green-500 equivalent */
   color: white;
 }

@@ -73,7 +73,7 @@ const Profile = ({ data }: IProps) => {
             <span>{user.userName.replace(/\s+/g, '')}</span>
             <GoVerified className='text-blue-400 md:text-xl text-md' />
           </div>
-          <p className='text-sm font-medium text-gray-700 dark:text-gray-300'>{user.userName}</p>
+          <p className='text-base font-medium text-gray-700 dark:text-gray-300'>{user.userName}</p>
           {userProfile?._id === user._id ? (
             <div className='flex gap-2 mt-2 items-center'>
               <button type="button" className={`button-common button-edit-profile`}>
