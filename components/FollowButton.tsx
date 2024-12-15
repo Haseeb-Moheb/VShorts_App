@@ -7,9 +7,10 @@ import { BsPeopleFill } from 'react-icons/bs'; // Import the two-person icon
 interface FollowButtonProps {
   userId: string;
   currentUserId: string;
+  updateCounts: (action: 'follow' | 'unfollow') => void;
 }
 
-const FollowButton: React.FC<FollowButtonProps> = ({ userId, currentUserId }) => {
+const FollowButton: React.FC<FollowButtonProps> = ({ userId, currentUserId, updateCounts }) => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isRequested, setIsRequested] = useState(false);
   const { userProfile }: any = useAuthStore(); // Get the current user profile
@@ -33,11 +34,12 @@ const FollowButton: React.FC<FollowButtonProps> = ({ userId, currentUserId }) =>
   const handleFollow = async () => {
     if (userProfile) {
       try {
-        const response = await axios.post(`${BASE_URL}/api/profile/${userId}`, { followerId: userProfile._id, followingId: userId });
+        const response = await axios.post(`${BASE_URL}/api/profile/follow`, { followerId: userProfile._id, followingId: userId });
         if (response.data.status === 'requested') {
           setIsRequested(true);
         } else {
           setIsFollowing(true);
+          updateCounts('follow');
         }
       } catch (error) {
         console.error('Error following user', error);
@@ -48,9 +50,10 @@ const FollowButton: React.FC<FollowButtonProps> = ({ userId, currentUserId }) =>
   const handleUnfollow = async () => {
     if (userProfile) {
       try {
-        await axios.delete(`${BASE_URL}/api/profile/${userId}`, { data: { followerId: userProfile._id, followingId: userId } });
+        await axios.delete(`${BASE_URL}/api/profile/unfollow`, { data: { followerId: userProfile._id, followingId: userId } });
         setIsFollowing(false);
         setIsRequested(false);
+        updateCounts('unfollow');
       } catch (error) {
         console.error('Error unfollowing user', error);
       }

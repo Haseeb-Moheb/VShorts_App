@@ -1,12 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { singleUserQuery, userCreatedPostsQuery, userLikedPostsQuery } from './../../../utils/queries';
+import { singleUserQuery, userCreatedPostsQuery, userLikedPostsQuery } from '../../../utils/queries';
 import { client } from '../../../utils/client';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
+  const { id, subPath } = req.query;
 
   if (req.method === 'GET') {
     try {
+      if (subPath === 'followers') {
+        const followersQuery = `count(*[_type == "follow" && followee._ref == "${id}"])`;
+        const userFollowersCount = await client.fetch(followersQuery);
+        return res.status(200).json({ count: userFollowersCount });
+      } else if (subPath === 'following') {
+        const followingQuery = `count(*[_type == "follow" && follower._ref == "${id}"])`;
+        const userFollowingCount = await client.fetch(followingQuery);
+        return res.status(200).json({ count: userFollowingCount });
+      } else if (subPath === 'likes') {
+        const likesQuery = `count(*[_type == "like" && user._ref == "${id}"])`;
+        const userLikesCount = await client.fetch(likesQuery);
+        return res.status(200).json({ count: userLikesCount });
+      }
+
       const query = singleUserQuery(id as string);
       const userVideosQuery = userCreatedPostsQuery(id as string);
       const userLikedVideosQuery = userLikedPostsQuery(id as string);
@@ -20,42 +34,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(200).json(data);
     } catch (error) {
       res.status(500).json({ message: 'Error fetching user data' });
-    }
-  } else if (req.method === 'POST') {
-    const { followerId, followingId } = req.body;
-
-    try {
-      await client.create({
-        _type: 'follow',
-        followerId: {
-          _type: 'reference',
-          _ref: followerId
-        },
-        followingId: {
-          _type: 'reference',
-          _ref: followingId
-        }
-      });
-      res.status(200).json({ message: 'Followed successfully' });
-    } catch (error) {
-      
-      res.status(500).json({ message: 'Error following user' });
-    }
-  } else if (req.method === 'DELETE') {
-    const { followerId, followingId } = req.body;
-
-    try {
-      const query = `*[_type == "follow" && followerId._ref == $followerId && followingId._ref == $followingId][0]`;
-      const followRecord = await client.fetch(query, { followerId, followingId });
-
-      if (followRecord) {
-        await client.delete(followRecord._id);
-        res.status(200).json({ message: 'Unfollowed successfully' });
-      } else {
-        res.status(404).json({ message: 'Follow record not found' });
-      }
-    } catch (error) {
-      res.status(500).json({ message: 'Error unfollowing user' });
     }
   } else {
     res.status(405).json({ message: 'Method Not Allowed' });

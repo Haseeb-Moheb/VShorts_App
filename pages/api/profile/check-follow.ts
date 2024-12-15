@@ -5,11 +5,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { followerId, followingId } = req.query;
 
   try {
-    const query = `*[_type == "follow" && followerId._ref == $followerId && followingId._ref == $followingId][0]`;
-    const followRecord = await client.fetch(query, { followerId, followingId });
+    const query = `*[_type == "follow" && follower._ref == "${followerId}" && followee._ref == "${followingId}"][0]`;
+    const followStatus = await client.fetch(query);
 
-    res.status(200).json({ isFollowing: !!followRecord });
+    if (followStatus) {
+      res.status(200).json({ isFollowing: true, isRequested: false }); // Assuming immediate follow
+    } else {
+      res.status(200).json({ isFollowing: false, isRequested: false });
+    }
   } catch (error) {
-    res.status(500).json({ message: 'Error checking follow status' });
+    res.status(500).json({ error: 'Failed to check follow status' });
   }
 }
