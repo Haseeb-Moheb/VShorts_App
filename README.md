@@ -17,8 +17,9 @@ VShorts Application includes Google Auth, the ability to upload, publish, share,
 Technical Skills:
 
 - TypeScript: one of the best open-source high-level programming languages today
-- React JS: advanced React best practices such as folder and file structure, hooks and refs 
+- React JS: advanced React best practices such as folder and file structure, hooks and refs
 - Next JS: utalized file-based routing, data fetching using server-side rendering and static  generation
 - Zustand: advanced State Management of the entire React application
 - Google: integrated OAuth to log in and register users
 - Sanity: managed the entire content of the app. Sanity is the unified content platform that’ll make the making of entire app possible
+- Tailwind CSS: Tailwind CSS is a Utility-first CSS framework used to build rapid custom UI. It is a highly customizable, low-level CSS framework that gives you all of the building blocks that you need. Also, you can use inline styling to achieve an awesome interface without writing a single line of your own CSS.
