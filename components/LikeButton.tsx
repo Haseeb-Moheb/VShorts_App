@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '@/utils';
 import useAuthStore from '@/store/authStore'; // Import your auth store
+import { FaHeart, FaRegHeart } from 'react-icons/fa'; // Import heart icons
 
 interface LikeButtonProps {
-  userId: string;
   postId: string;
   updateCounts: (action: 'like' | 'unlike') => void;
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ userId, postId, updateCounts }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ postId, updateCounts }) => {
   const [isLiked, setIsLiked] = useState(false);
   const { userProfile }: any = useAuthStore(); // Get the current user profile
 
@@ -31,7 +31,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ userId, postId, updateCounts })
   const handleLike = async () => {
     if (userProfile) {
       try {
-        await axios.post(`${BASE_URL}/api/like`, { userId: userProfile._id, postId });
+        const response = await axios.put(`${BASE_URL}/api/like`, { userId: userProfile._id, postId, like: true });
         setIsLiked(true);
         updateCounts('like');
       } catch (error) {
@@ -43,7 +43,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ userId, postId, updateCounts })
   const handleUnlike = async () => {
     if (userProfile) {
       try {
-        await axios.delete(`${BASE_URL}/api/unlike`, { data: { userId: userProfile._id, postId } });
+        const response = await axios.put(`${BASE_URL}/api/like`, { userId: userProfile._id, postId, like: false });
         setIsLiked(false);
         updateCounts('unlike');
       } catch (error) {
@@ -55,8 +55,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({ userId, postId, updateCounts })
   if (!userProfile) return null; // Return null if userProfile is not available
 
   return (
-    <button onClick={isLiked ? handleUnlike : handleLike}>
-      {isLiked ? 'Unlike' : 'Like'}
+    <button onClick={isLiked ? handleUnlike : handleLike} className='flex items-center justify-center px-3 py-2 mt-2 text-base font-semibold rounded-md'>
+      {isLiked ? <FaHeart className='text-red-500 text-lg' /> : <FaRegHeart className='text-gray-500 text-lg' />}
     </button>
   );
 };
