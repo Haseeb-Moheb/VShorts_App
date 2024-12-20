@@ -23,7 +23,3 @@ Technical Skills:
 - Google: integrated OAuth to log in and register users
 - Sanity: managed the entire content of the app. Sanity is the unified content platform that’ll make the making of entire app possible
 - Tailwind CSS: Tailwind CSS is a Utility-first CSS framework used to build rapid custom UI. It is a highly customizable, low-level CSS framework that gives you all of the building blocks that you need. Also, you can use inline styling to achieve an awesome interface without writing a single line of your own CSS.
-
-TypeScript is an open-source language developed and maintained by Microsoft. It builds upon JavaScript by adding optional static typing, classes, and modules, making it easier to develop and maintain large-scale applications.
-
-VShorts is THE destination for mobile videos. On VShorts, short-form videos are exciting, spontaneous, and genuine. Whether you're a sports fanatic, a pet enthusiast, or just looking for a laugh, there's something for everyone on VShorts. All you have to do is watch, engage with what you like, skip what you don't, and you'll find an endless stream of short videos that feel personalized just for you. From your morning coffee to your afternoon errands, VShorts has the videos that are guaranteed to make your day.
