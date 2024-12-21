@@ -13,6 +13,12 @@ export default {
         title: 'Image',
         type: 'string',
       },
+      { 
+        name: 'totalLikes', 
+        type: 'number', 
+        title: 'Total Likes', 
+        initialValue: 0,
+      },
     ],
   };
   
