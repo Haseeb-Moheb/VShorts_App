@@ -140,12 +140,12 @@ const Detail = ({ postDetails }: IProps) => {
                 <p className='text-md text-gray-600 dark:text-gray-300'>{post.caption}</p>
               </div>
               <div className='mt-10 px-10'>
-                {userProfile && <LikeButton
-                  likes={post.likes}
-                  flex='flex'
-                  handleLike={() => handleLike(true)}
-                  handleDislike={() => handleLike(false)}
-                />}
+                {userProfile && (
+                  <LikeButton
+                    postId={post._id}
+                    updateCounts={(action) => handleLike(action === 'like')}
+                  />
+                )}
               </div>
               <Comments
                 comment={comment}
@@ -163,7 +163,7 @@ const Detail = ({ postDetails }: IProps) => {
 };
 
 export const getServerSideProps = async ({ params: { id } }: any) => {
-  const res = await axios.get(`${BASE_URL}/api/post/${ id }`);
+  const res = await axios.get(`${BASE_URL}/api/post/${id}`);
 
   return {
     props: { postDetails: res.data },

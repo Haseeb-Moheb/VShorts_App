@@ -5,11 +5,11 @@ import axios from 'axios';
 import VideoCard from '../../components/VideoCard';
 import NoResults from '../../components/NoResults';
 import FollowButton from '../../components/FollowButton';
-import MessageField from '../../components/MessageField'; // Import MessageField component
+import MessageField from '../../components/MessageField';
+import TotalLikes from '../../components/TotalLikes';
 import useAuthStore from '../../store/authStore';
 import { IUser, Video } from '../../types';
 import { BASE_URL } from '@/utils';
-import { client } from '@/utils/client'; // Import the Sanity client
 
 interface IProps {
   data: {
@@ -31,6 +31,11 @@ const Profile = ({ data }: IProps) => {
 
   const [currentFollowersCount, setCurrentFollowersCount] = useState(userFollowersCount);
   const [currentFollowingCount, setCurrentFollowingCount] = useState(userFollowingCount);
+  const [currentLikesCount, setCurrentLikesCount] = useState(userLikesCount);
+
+  useEffect(() => {
+    console.log('Initial userLikesCount:', userLikesCount);
+  }, [userLikesCount]);
 
   const videos = showUserVideos ? 'border-b-2 border-black dark:border-white' : 'text-gray-400 dark:text-gray-500';
   const liked = !showUserVideos ? 'border-b-2 border-black dark:border-white' : 'text-gray-400 dark:text-gray-500';
@@ -59,15 +64,27 @@ const Profile = ({ data }: IProps) => {
     alert('Promote post');
   };
 
-  const updateCounts = (action: 'follow' | 'unfollow') => {
+  const updateCounts = (action: 'follow' | 'unfollow' | 'like' | 'unlike') => {
     if (action === 'follow') {
       setCurrentFollowersCount(currentFollowersCount + 1);
       setCurrentFollowingCount(currentFollowingCount + 1);
     } else if (action === 'unfollow') {
       setCurrentFollowersCount(currentFollowersCount - 1);
       setCurrentFollowingCount(currentFollowingCount - 1);
+    } else if (action === 'like') {
+      setCurrentLikesCount((prev) => {
+        console.log(`Updating like count from ${prev} to ${prev + 1}`);
+        return prev + 1;
+      });
+    } else if (action === 'unlike') {
+      setCurrentLikesCount((prev) => {
+        console.log(`Updating like count from ${prev} to ${prev - 1}`);
+        return prev - 1;
+      });
     }
   };
+
+  console.log(`Total likes: ${currentLikesCount}`);
 
   return (
     <div className='w-full bg-white dark:bg-gray-900 text-primary dark:text-white'>
@@ -115,10 +132,7 @@ const Profile = ({ data }: IProps) => {
               <span className='font-bold'>{currentFollowersCount}</span>
               <span className='text-gray-700 dark:text-gray-300'> Followers</span>
             </div>
-            <div>
-              <span className='font-bold'>{userLikesCount}</span>
-              <span className='text-gray-700 dark:text-gray-300'> Likes</span>
-            </div>
+            <TotalLikes totalLikes={currentLikesCount} />
           </div>
         </div>
       </div>
@@ -153,6 +167,8 @@ export const getServerSideProps = async ({ params: { userId } }: any) => {
     const userFollowersCount = await axios.get(`${BASE_URL}/api/profile/${userId}?subPath=followers`);
     const userFollowingCount = await axios.get(`${BASE_URL}/api/profile/${userId}?subPath=following`);
     const userLikesCount = await axios.get(`${BASE_URL}/api/profile/${userId}?subPath=likes`);
+
+    console.log('Server-side fetched likes count:', userLikesCount.data.count);
 
     return {
       props: { 
