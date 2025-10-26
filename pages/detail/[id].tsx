@@ -98,7 +98,7 @@ const Detail = ({ postDetails }: IProps) => {
 
               <div className='absolute top-[45%] left-[40%] cursor-pointer'>
                 {!isPlaying && (
-                  <button onClick={onVideoClick}>
+                  <button onClick={onVideoClick} type='button' aria-label='play video'>
                     <BsFillPlayFill className='text-white text-6xl lg:text-8xl' />
                   </button>
                 )}
@@ -106,11 +106,11 @@ const Detail = ({ postDetails }: IProps) => {
             </div>
             <div className='absolute bottom-5 lg:bottom-10 right-5 lg:right-10 cursor-pointer'>
               {isVideoMuted ? (
-                <button onClick={() => setIsVideoMuted(false)}>
+                <button onClick={() => setIsVideoMuted(false)} type='button' aria-label='play video'>
                   <HiVolumeOff className='text-white text-3xl lg:text-4xl' />
                 </button>
               ) : (
-                <button onClick={() => setIsVideoMuted(true)}>
+                <button onClick={() => setIsVideoMuted(true)} type='button' aria-label='play video'>
                   <HiVolumeUp className='text-white text-3xl lg:text-4xl' />
                 </button>
               )}

@@ -4,4 +4,4 @@ export default {
     type: 'reference',
     to: [{ type: 'user' }],
   };
-  
+   

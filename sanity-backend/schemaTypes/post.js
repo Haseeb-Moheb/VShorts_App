@@ -6,7 +6,7 @@ export default {
       {
         name: 'caption',
         title: 'Caption',
-        type: 'string',
+        type: 'string', 
       },
       {
         name: 'video',
@@ -50,4 +50,4 @@ export default {
       },
     ],
   };
-  
+   
