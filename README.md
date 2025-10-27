@@ -23,3 +23,5 @@ Technical Skills:
 - Google: integrated OAuth to log in and register users
 - Sanity: managed the entire content of the app. Sanity is the unified content platform that’ll make the making of entire app possible
 - Tailwind CSS: Tailwind CSS is a Utility-first CSS framework used to build rapid custom UI. It is a highly customizable, low-level CSS framework that gives you all of the building blocks that you need. Also, you can use inline styling to achieve an awesome interface without writing a single line of your own CSS.
+
+https://vshorts.vercel.app/
