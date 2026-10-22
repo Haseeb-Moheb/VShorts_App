@@ -19,9 +19,10 @@ sanitybackend/node_modules
 # misc
 .DS_Store
 *.pem
-.env
-.env.production
-.env.development
+
+# env files (never commit secrets; the example file is the exception)
+.env*
+!.env.example
 
 # debug
 npm-debug.log*
@@ -29,14 +30,8 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
-.env*.local
-
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-
-.env*
-.env*
