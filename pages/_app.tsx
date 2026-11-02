@@ -16,7 +16,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   if (isSSR) return null;
 
   return (
-    <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}>
+    <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
       <Head>
         <link rel="icon" href={`${process.env.NEXT_PUBLIC_BASE_URL}/favi.png`} />
         <meta name="theme-color" content="#000000" />

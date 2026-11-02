@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { client } from '@/utils/client'; // Import Sanity client
+import axios from 'axios';
 import useAuthStore from '@/store/authStore';
 import { AiOutlineClose } from 'react-icons/ai'; // Import close icon
 import { BASE_URL } from '@/utils'; 
@@ -18,9 +18,10 @@ const MessageField: React.FC<MessageFieldProps> = ({ recipientId, onClose }) => 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const query = `*[_type == "message" && ((sender._ref == "${userProfile._id}" && recipient._ref == "${recipientId}") || (sender._ref == "${recipientId}" && recipient._ref == "${userProfile._id}"))] | order(timestamp asc)`;
-        const res = await client.fetch(query);
-        setMessages(res);
+        const { data } = await axios.get(`${BASE_URL}/api/messages`, {
+          params: { userId: userProfile._id, recipientId },
+        });
+        setMessages(data);
       } catch (error) {
         console.error('Error fetching messages', error);
       }
@@ -38,20 +39,11 @@ const MessageField: React.FC<MessageFieldProps> = ({ recipientId, onClose }) => 
   const sendMessage = async () => {
     if (newMessage.trim()) {
       try {
-        const message = {
-          _type: 'message',
-          sender: {
-            _type: 'reference',
-            _ref: userProfile._id,
-          },
-          recipient: {
-            _type: 'reference',
-            _ref: recipientId,
-          },
+        const { data: message } = await axios.post(`${BASE_URL}/api/messages`, {
+          senderId: userProfile._id,
+          recipientId,
           content: newMessage,
-          timestamp: new Date().toISOString(),
-        };
-        await client.create(message);
+        });
         setMessages([...messages, message]);
         setNewMessage('');
       } catch (error) {

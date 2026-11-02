@@ -7,7 +7,6 @@ import axios from 'axios';
 
 import useAuthStore from '../store/authStore';
 import { BASE_URL } from '../utils';
-import { client } from '../utils/client';
 import { topics } from '../utils/constants';
 
 const Upload = () => {
@@ -34,13 +33,17 @@ const Upload = () => {
       setWrongFileType(false);
       setLoading(true);
 
-      client.assets
-        .upload('file', selectedFile, {
-          contentType: selectedFile.type,
-          filename: selectedFile.name,
+      axios
+        .post<SanityAssetDocument>(`${BASE_URL}/api/upload/video`, selectedFile, {
+          headers: { 'Content-Type': selectedFile.type },
+          params: { filename: selectedFile.name },
         })
-        .then((data) => {
+        .then(({ data }) => {
           setVideoAsset(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error uploading video', error);
           setLoading(false);
         });
     } else {

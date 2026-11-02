@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { client } from '@/utils/client';
+import { publicClient as client } from '@/lib/sanity.public';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { followerId, followingId } = req.query;

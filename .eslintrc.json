@@ -1,3 +1,21 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "overrides": [
+    {
+      "files": ["components/**", "hooks/**", "store/**", "utils/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["**/lib/sanity.server", "@/lib/sanity.server"],
+                "message": "The write-token Sanity client is server-only. Call an API route instead."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }

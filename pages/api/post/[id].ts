@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { postDetailQuery } from './../../../utils/queries';
-import { client } from '../../../utils/client';
+import { serverClient as client } from '@/lib/sanity.server';
 import { uuid } from 'uuidv4';
 
 export default async function handler( req: NextApiRequest, res: NextApiResponse) {
